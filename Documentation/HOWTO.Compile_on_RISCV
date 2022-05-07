@@ -1,0 +1,69 @@
+To start off with development for RISCV, we need to make sure that we have 
+environment setup correctly.
+
+1. The easiest and fast way to start off the development is by spinning
+off Docker Container with RISCV emulation, and this is the best image 
+to use : [Docker_RISCV_Image]
+(https://github.com/DavidBurela/riscv-emulator-docker-image)
+
+Internally it spins up the qemu so if you dont want to use docker container
+feel free to use the commands listed in Dockerfile
+
+OR 
+
+1. You can follow the guide listed on qemu page. [RISCV_Getting_Started]
+(https://risc-v-getting-started-guide.readthedocs.io/en/latest/linux-qemu.html)
+
+
+
+Once first step is done, next step consist of installing required libs 
+to start working with CRIU 
+
+2. Can be installed using :
+```
+apt-get update 
+apt-get install -y asciidoc wget autoconf curl g++ libtool gcc git libbsd-dev
+apt-get install -y libtool gcc automake make vim libprotobuf-dev libprotobuf-c-dev protobuf-c-compiler protobuf-compiler
+```
+This are the only probably libs you will be needing to start compiling CRIU 
+
+3. CRIU is divided into two parts, main part of CRIU is something called
+as compel, more on compel here : [compel](https://criu.org/Compel)
+
+4. CRIU allows to compile the compel seprately from rest of the code.
+And it can be done using `make install-compel`
+
+5. With current progress, our `make install-compel` succeeds, that means 
+installation is all correct syntactically.
+
+6. To know where we are messing up, we can test compel only by running any of the
+tests given in : [tests] (https://github.com/ssrg-vt/criu-riscv/tree/master/compel/test/)
+
+7. But the problem with this step is it expects something called as `compel-host-bin`
+and this part is generated when you do make install (Ugh I know its bit messed up .)
+
+8. So right now what you can do is do : make clean in main dir and then instead
+of using `make install-compel` do `make install`.
+
+9. Now when make install runs, its gonna break but its going to succeed till the point
+where it's going to generate compel host bin (as described in step 7)
+
+10. After this you can go back to step 6. i.e testing. Now as described 
+before compel gets installed flawlessly but syntactically and not logically.
+
+11. So because of this, when you start compiling your one of the test current issue 
+which is breaking is RELOCATIONS. Which are define here :
+https://github.com/ssrg-vt/criu-riscv/blob/master/compel/src/lib/handle-elf.c#L483
+
+----
+General Notes:
+
+1. Most of the architecture specific code is in compel and we are quite
+closer to porting compel for RISCV.
+
+2. Once compel is installed and tested correctly next thing to be looked at 
+is ofcourse installing CRIU as whole but there should not be lot of issues.
+
+3. There are few assembly files which are all compel inside aarch folder.
+Most of the assembly files are migrated.
+
