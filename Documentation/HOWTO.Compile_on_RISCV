@@ -3,16 +3,14 @@ environment setup correctly.
 
 1. The easiest and fast way to start off the development is by spinning
 off Docker Container with RISCV emulation, and this is the best image 
-to use : [Docker_RISCV_Image]
-(https://github.com/DavidBurela/riscv-emulator-docker-image)
+to use : [Docker_RISCV_Image](https://github.com/DavidBurela/riscv-emulator-docker-image)
 
 Internally it spins up the qemu so if you dont want to use docker container
 feel free to use the commands listed in Dockerfile
 
 OR 
 
-1. You can follow the guide listed on qemu page. [RISCV_Getting_Started]
-(https://risc-v-getting-started-guide.readthedocs.io/en/latest/linux-qemu.html)
+1. You can follow the guide listed on qemu page. [RISCV_Getting_Started](https://risc-v-getting-started-guide.readthedocs.io/en/latest/linux-qemu.html)
 
 
 
@@ -37,7 +35,7 @@ And it can be done using `make install-compel`
 installation is all correct syntactically.
 
 6. To know where we are messing up, we can test compel only by running any of the
-tests given in : [tests] (https://github.com/ssrg-vt/criu-riscv/tree/master/compel/test/)
+tests given in : [tests](https://github.com/ssrg-vt/criu-riscv/tree/master/compel/test/)
 
 7. But the problem with this step is it expects something called as `compel-host-bin`
 and this part is generated when you do make install (Ugh I know its bit messed up .)
