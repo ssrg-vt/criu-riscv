@@ -67,3 +67,5 @@ is ofcourse installing CRIU as whole but there should not be lot of issues.
 3. There are few assembly files which are all compel inside aarch folder.
 Most of the assembly files are migrated.
 
+4. So we had copied code of Aarch64 and have renamed it to RISCV (tdd). So the code
+you are seeing right now in the RISCV folder is all aarch64 (if its not migrated).
